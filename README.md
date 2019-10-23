@@ -25,10 +25,13 @@ netlifyIdentity.init();
 ```
 ## Step 4)
 ### Modify App.js, so that if the user isn't signed in, the Netlify Identity Widget will be shown
-### Modify App.js to send the users sign in token to a backend request when they click a button
 ```javascript
 ```
 ## Step 5)
+### Modify App.js to send the users sign in token to a backend request when they click a button
+```javascript
+```
+## Step 6)
 ### Create the lambda that detects if the user is signed in, and responds accordingly
 ```javascript
 exports.handler = (event, context, callback) => {
@@ -38,12 +41,12 @@ exports.handler = (event, context, callback) => {
     });
 }
 ```
-## Step 6)
+## Step 7)
 ### Test your app for compile time errors by running the following command. You will need the netlify-cli package globally installed for this to work.
 ```
 ntl dev -p 9000
 ```
-## Step 7)
+## Step 8)
 ### Push to git, and deploy your site to Netlify, and go to the url it's hosted at
 ### The login window should appear if you're not signed in
 ### If don't sign in and click the button, a message should say that you're not signed in, you can refresh the page to make the sign in widget pop up again.

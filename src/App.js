@@ -6,6 +6,34 @@ import netlifyIdentity from 'netlify-identity-widget';
 
 function App() {
 
+  function generateHeaders () {
+    let headers = {'content-type': 'application/json'};
+
+    const user = netlifyIdentity.currentUser();
+
+    if(user != null){
+      return user.jwt()
+      .then(token => {
+        console.log('header token is', token);
+        return {...headers, token}
+      })
+    }
+
+    return Promise.resolve(headers);
+  }
+
+  function authedBackEndCall() {
+    console.log('this is authed back end call');
+
+    generateHeaders().then(headers => {
+      fetch('/.netlify/functions/authedBackendCall', {
+        method: 'POST',
+        headers
+      })
+    })
+
+  }
+
   const user = netlifyIdentity.currentUser();
 
   if(user == null){
@@ -14,6 +42,7 @@ function App() {
 
   return (
     <div className="App">
+      <button onClick={authedBackEndCall}>Authed backend call</button>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
