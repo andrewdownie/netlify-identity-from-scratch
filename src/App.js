@@ -2,7 +2,16 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import netlifyIdentity from 'netlify-identity-widget';
+
 function App() {
+
+  const user = netlifyIdentity.currentUser();
+
+  if(user == null){
+    netlifyIdentity.open();
+  }
+
   return (
     <div className="App">
       <header className="App-header">
