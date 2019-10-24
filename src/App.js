@@ -30,6 +30,11 @@ function App() {
         method: 'POST',
         headers
       })
+      .then(result => result.json())
+      .then(resp => {
+        console.log(resp)
+      })
+
     })
 
   }
