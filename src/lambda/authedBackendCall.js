@@ -5,7 +5,7 @@ exports.handler = (event, context, callback) => {
     if(claims === undefined){
         callback(null, {
             statusCode: '401',
-            body: 'you need to sign in you friggen apple'
+            body: {msg: 'you need to sign in you friggen apple'}
         })
     }
     else{
