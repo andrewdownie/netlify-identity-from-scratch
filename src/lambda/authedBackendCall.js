@@ -5,7 +5,7 @@ exports.handler = (event, context, callback) => {
     if(claims === undefined){
         callback(null, {
             statusCode: '401',
-            body: {msg: 'you need to sign in you friggen apple'}
+            body: JSON.stringify({msg: 'you need to sign in you friggen apple'})
         })
     }
     else{
@@ -15,7 +15,7 @@ exports.handler = (event, context, callback) => {
 
         callback(null, {
             statusCode: 200,
-            body: {msg: 'welcome to your profile' +  userName}
+            body: JSON.stringify({msg: 'welcome to your profile' +  userName})
         })
 
     }
