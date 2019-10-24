@@ -4,7 +4,7 @@ exports.handler = (event, context, callback) => {
 
     const payload = {
         context: context,
-        msg: 'claims is' + claims
+        msg: 'claims is ' + claims
     }
 
     callback(null, {

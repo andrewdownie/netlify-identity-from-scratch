@@ -15,7 +15,7 @@ function App() {
       return user.jwt()
       .then(token => {
         console.log('header token is', token);
-        return {...headers, token}
+        return {...headers, Authorization: `Bearer ${token}`}
       })
     }
 
