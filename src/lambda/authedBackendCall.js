@@ -3,6 +3,7 @@ exports.handler = (event, context, callback) => {
     const claims = context.clientContext && context.clientContext.user;
 
     const payload = {
+        context: context,
         msg: 'claims is' + claims
     }
 
