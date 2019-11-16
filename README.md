@@ -6,15 +6,15 @@ WARNING this tutorial is using yarn. Big oof.
 NOTE: This tutorial uses https://github.com/andrewdownie/create-react-app-lambda-from-scratch as a starting point.
 
 
-There are two main limitations when working with netlify identity locally. You MUST have a netlify site with identity setup, and you can ONLY use the email method of logging in. Identity providers (Google, GitHub, ect...) will result in being redirected to your hosted netlify site after being logged  in.
+There are two main limitations when working with netlify identity locally. You MUST have a hosted Netlify site with identity setup, and you can ONLY use the email method of logging in. Identity providers (Google, GitHub, ect...) will result in being redirected to your hosted netlify site after being logged  in.
 
-This tutorial REQUIRES that you have a netlify repo with Netlify-Identity enabled on it. Enabling identity on a Netlify repo is as simple as browing through the settings until you find the Identity tab, and clicking 'enable'.
+This tutorial REQUIRES that you have a netlify repo with Netlify-Identity enabled on it. Enabling identity on a Netlify repo is as simple as browsing through the settings until you find the Identity tab, and clicking 'enable'.
 
 ## Presetup)
 ### This tutorial does not cover working with git or the netlify web ui, but here's a high level overview:
-You need to create an account at netlify.com You will also need need an account with a compatible git provider Netlify supports GitHub, GitLab, and BitBucket as git repo sources.
+You need to create an account at netlify.com You will also need need an account with a git provider Netlify supports: GitHub, GitLab, and BitBucket are all supported.
 
-Setup a new git repo on your selected compatiable git provider. On netlify.com, create a "New site from Git", and choose the new git repo you just created as the source.
+Setup a new git repo on your selected compatiable git provider. On netlify.com, create a "New site from Git", and choose the new git repo you just created as the source. You will need to link your netlify.com account to your git account.
 
 Go to the settings portion of the new site you just created on Netlify, and enable Identity. This will allow the Netlify-Identity-Widget to let users sign in.
 
