@@ -64,34 +64,32 @@ The Back end authed call button won't work until step 6 is completed.
 Add the following in the App function, but before the return:
 ```javascript
   // If the user is signed in, this will pull their token, and pass it as part of the headers
-  function generateHeaders() {
-    const headers = {'content-type': 'application/json'};
+function generateHeaders () {
+  const headers = {'content-type': 'application/json'};
 
-    const user = netlifyIdentity.currentUser();
+  const user = netlifyIdentity.currentUser();
 
-    if (user) {
-      return user.jwt()
-      .then(token => {
-        return {...headers, Authorization: `Bearer ${token}`}
-      })
-    }
-
-    return Promise.resolve(headers);
-  }
-  
-  // This makes the call to the back end function
-  function backendAuthedCall() {
-    console.log('back end call');
-
-    generateHeaders().then(headers => {
-      fetch('/.netlify/functions/authedCall',{
-        method: 'POST',
-        headers
-      })
-      .then(raw => raw.json())
-      .then(json => console.log(json))
+  if (user) {
+    return user.jwt().then(token => {
+      return {...headers, Authorization: `Bearer ${token}`};
     })
   }
+
+  return Promise.resolve(headers);
+}
+
+function backendCall () {
+
+  generateHeaders().then(headers =>  {
+    fetch('/.netlify/functions/authedBackend', {
+      method: 'POST',
+      headers
+    })
+    .then(stream => stream.json())
+    .then(json => console.log(json));
+
+  })
+}
 ```
 
 ## Step 7)
