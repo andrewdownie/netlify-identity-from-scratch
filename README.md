@@ -98,7 +98,7 @@ Netlify does some magic for us, if the authorization header is present on the re
 
 We are going to check if the user info is present. If not, then the user is not signed in, and the request will return 401 unauthorized. But if the user is signed in, we return a message saying they are signed in, along with their email address they are signed in with.
 
-Create a file src/lambda/authedCall.js and fill it with the following:
+Create a file src/lambda/authedBackend.js and fill it with the following:
 ```javascript
 exports.handler = (event, context, callback) => {
     const user = context.clientContext.user;
