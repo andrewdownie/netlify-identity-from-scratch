@@ -5,49 +5,37 @@ import './App.css';
 import netlifyIdentity from 'netlify-identity-widget';
 
 function App() {
-
   function generateHeaders () {
-    let headers = {'content-type': 'application/json'};
+    const headers = {'content-type': 'application/json'};
 
     const user = netlifyIdentity.currentUser();
 
-    if(user != null){
-      return user.jwt()
-      .then(token => {
-        console.log('header token is', token);
-        return {...headers, Authorization: `Bearer ${token}`}
+    if (user) {
+      return user.jwt().then(token => {
+        return {...headers, Authorization: `Bearer ${token}`};
       })
     }
 
     return Promise.resolve(headers);
   }
 
-  function authedBackEndCall() {
-    console.log('this is authed back end call');
+  function backendCall () {
 
-    generateHeaders().then(headers => {
-      fetch('/.netlify/functions/authedBackendCall', {
+    generateHeaders().then(headers =>  {
+      fetch('/.netlify/functions/authedBackend', {
         method: 'POST',
         headers
       })
-      .then(result => result.json())
-      .then(resp => {
-        console.log(resp)
-      })
+      .then(stream => stream.json())
+      .then(json => console.log(json));
 
     })
-
-  }
-
-  const user = netlifyIdentity.currentUser();
-
-  if(user == null){
-    netlifyIdentity.open();
   }
 
   return (
     <div className="App">
-      <button onClick={authedBackEndCall}>Authed backend call</button>
+      <button onClick={() => netlifyIdentity.open()}>Open Widget</button>
+      <button onClick={backendCall}>Backend call</button>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
